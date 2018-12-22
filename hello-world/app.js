@@ -7,6 +7,15 @@ const app = express();
 app.use(logger('short'));
 
 app.use((req, res, next) => {
+  console.log('aaaaaaaaaaaaa',req.ip)
+  if (req.ip === '::ffff:127.0.0.1') {
+    res.status(401).send('Not Allowed');
+  } else {
+    next();
+  }
+});
+
+app.use((req, res, next) => {
   const minute = (new Date()).getMinutes();
   if (minute%2 === 0) {
     next();
