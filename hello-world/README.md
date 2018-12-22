@@ -5,3 +5,12 @@
   Server . app.listen is just shorthand, like how you’ll shorten request to req
   and response to res in following chapters.
 ```
+
+```
+  path.resolve
+  path.join
+```
+
+```
+  req.ip === '::ffff:127.0.0.1'
+```
