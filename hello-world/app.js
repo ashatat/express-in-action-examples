@@ -1,12 +1,10 @@
 const express = require('express');
 const http = require('http');
+const logger = require('morgan');
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('In comes a '+ req.method + ' to ' + req.url);
-  next();
-});
+app.use(logger('short'));
 
 app.use((req, res, next) => {
   const minute = (new Date()).getMinutes();
