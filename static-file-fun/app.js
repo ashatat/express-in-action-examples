@@ -1,13 +1,28 @@
-var express = require("express");
-var path = require("path");
-var fs = require("fs");
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
 
 const app = express();
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   console.log("Request IP: " + req.url);
   console.log("Request date: " + new Date());
   next();
+});
+
+app.use((req, res, next) => {
+  const filePath = path.join(__dirname, 'static', req.url);
+  fs.stat(filePath, (err, fileInfo) => {
+    if (err) {
+      next();
+      return;
+    }
+    if (fileInfo.isFile()) {
+      res.sendFile(filePath);
+    } else {
+      next();
+    }
+  });
 });
 
 app.listen(3000, function() {
