@@ -14,3 +14,8 @@
 ```
   req.ip === '::ffff:127.0.0.1'
 ```
+
+```
+  npm scripts allow you to
+  add new commands to your project without installing them globally
+```
