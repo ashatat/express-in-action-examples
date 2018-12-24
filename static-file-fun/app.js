@@ -1,29 +1,12 @@
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
+const logger = require("morgan");
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("Request IP: " + req.url);
-  console.log("Request date: " + new Date());
-  next();
-});
+app.use(logger('short'));
 
-app.use((req, res, next) => {
-  const filePath = path.join(__dirname, 'static', req.url);
-  fs.stat(filePath, (err, fileInfo) => {
-    if (err) {
-      next();
-      return;
-    }
-    if (fileInfo.isFile()) {
-      res.sendFile(filePath);
-    } else {
-      next();
-    }
-  });
-});
+app.use(express.static(path.join(__dirname, 'static'), { redirect: false }));
 
 app.use((req, res) => {
   res.status(404);
