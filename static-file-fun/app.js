@@ -25,6 +25,11 @@ app.use((req, res, next) => {
   });
 });
 
+app.use((req, res) => {
+  res.status(404);
+  res.send("File not found!");
+});
+
 app.listen(3000, function() {
   console.log("App started on port 3000");
 });
