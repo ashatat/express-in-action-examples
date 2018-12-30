@@ -13,6 +13,10 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
 app.get(/^\/(\d{5})$/, (req, res, next) => {
     const zipcode = req.params[0];
     const location = zipdb.zipcode(zipcode);
