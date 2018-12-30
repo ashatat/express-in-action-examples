@@ -34,7 +34,7 @@ app.get(/^\/(\d{5})$/, (req, res, next) => {
         }
         res.json({
             zipcode,
-            temperature: data.currently.temprature
+            temperature: data.currently.temperature
         });
     });
 });
